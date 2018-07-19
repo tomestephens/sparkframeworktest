@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User profiles</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+<div class="container">
+    <h2>User profiles (using Thymeleaf)</h2>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}?: 'N/A'">1</td>
+            <td th:text="${user.email}?: 'N/A'">sebastian@mail.com</td>
+            <td th:text="${user.firstName}?: 'N/A'">Sebastian</td>
+            <td th:text="${user.lastName}?: 'N/A'">Pepper</td>
+            <td th:text="${user.age}?: 'N/A'">27</td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>
