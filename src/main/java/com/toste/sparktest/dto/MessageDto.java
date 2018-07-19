@@ -4,7 +4,7 @@ public class MessageDto {
 	private String message;
 
 	public MessageDto(String message, String... args) {
-		this.message = String.format(message, args);
+		this.message = String.format(message, (Object[])args);
 	}
 
 	public MessageDto(Exception e) {

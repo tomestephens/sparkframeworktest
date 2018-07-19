@@ -1,0 +1,152 @@
+{
+	"id": "dc60ebeb-2db5-155a-1ed1-4190f7a70860",
+	"name": "testing_spark",
+	"description": "",
+	"order": [
+		"ac3d9f37-b3ae-3aeb-c776-abae7963f0e7",
+		"14f91d76-1d95-3d12-1f2b-d8724c5ad588",
+		"ad7d2835-82ec-5674-4e2a-c694837fbfa6",
+		"745b0ff4-d61d-897f-fa53-896618a88926",
+		"4431dc63-a99a-49de-6850-ccc9f5656e27"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1532031423745,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "14f91d76-1d95-3d12-1f2b-d8724c5ad588",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4567/api/employees",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1532037126372,
+			"name": "Employees Update",
+			"description": "",
+			"collectionId": "dc60ebeb-2db5-155a-1ed1-4190f7a70860",
+			"responses": [],
+			"rawModeData": "{\n\t\"id\": \"{{new_employee_id}}\",\n\t\"firstName\": \"Ryan\",\n\t\"middleInitial\": \"S\",\n\t\"lastName\": \"Tibauld\",\n\t\"dateOfBirth\": \"1974-06-06\",\n\t\"dateOfEmployment\": \"2018-08-01\"\n}"
+		},
+		{
+			"id": "4431dc63-a99a-49de-6850-ccc9f5656e27",
+			"headers": "AuthToken: 6d99eab0-0f24-4585-a293-63f62c1a8e71\n",
+			"headerData": [
+				{
+					"key": "AuthToken",
+					"value": "6d99eab0-0f24-4585-a293-63f62c1a8e71",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4567/api/employees/{{employee_id}}",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1532037124856,
+			"name": "Employees Delete by Id",
+			"description": "",
+			"collectionId": "dc60ebeb-2db5-155a-1ed1-4190f7a70860",
+			"responses": []
+		},
+		{
+			"id": "745b0ff4-d61d-897f-fa53-896618a88926",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:4567/api/employees/{{employee_id}}",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1532037119377,
+			"name": "Employees Get by Id",
+			"description": "",
+			"collectionId": "dc60ebeb-2db5-155a-1ed1-4190f7a70860",
+			"responses": []
+		},
+		{
+			"id": "ac3d9f37-b3ae-3aeb-c776-abae7963f0e7",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:4567/api/employees",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\r\npostman.setEnvironmentVariable(\"new_employee_id\", jsonData.id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1532037123489,
+			"name": "Employees Create",
+			"description": "",
+			"collectionId": "dc60ebeb-2db5-155a-1ed1-4190f7a70860",
+			"responses": [],
+			"rawModeData": "{\n\t\"firstName\": \"Ryan\",\n\t\"middleInitial\": \"S\",\n\t\"lastName\": \"Tibauld\",\n\t\"dateOfBirth\": \"1974-06-06\",\n\t\"dateOfEmployment\": \"2018-08-01\"\n}"
+		},
+		{
+			"id": "ad7d2835-82ec-5674-4e2a-c694837fbfa6",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:4567/api/employees",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\r\npostman.setEnvironmentVariable(\"employee_id\", jsonData[0].id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1532037121286,
+			"name": "Employees Get",
+			"description": "",
+			"collectionId": "dc60ebeb-2db5-155a-1ed1-4190f7a70860",
+			"responses": []
+		}
+	]
+}

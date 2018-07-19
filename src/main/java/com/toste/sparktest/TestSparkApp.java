@@ -10,10 +10,9 @@ import com.toste.sparktest.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SparkApp {
+public class TestSparkApp {
 
-	private static final Logger log = LoggerFactory.getLogger(SparkApp.class);
-
+	private static final Logger log = LoggerFactory.getLogger(TestSparkApp.class);
 
 	public static void main(final String[] args) {
 		final EmployeeService employeeService = new EmployeeService();

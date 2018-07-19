@@ -11,6 +11,13 @@ public class EmployeeService {
 
 	public EmployeeService() {
 		allEmployees = new HashMap<>();
+		List<EmployeeDto> seedData = new SeedDataFactory().getSeedData();
+
+		for(EmployeeDto employee: seedData) {
+		    allEmployees.put(employee.getId(), employee);
+        }
+
+        System.out.println(allEmployees.size());
 	}
 
 	public void createEmployee(EmployeeDto employee) {
@@ -24,7 +31,6 @@ public class EmployeeService {
 		    throw new IllegalArgumentException("Employee with that ID already exists.");
         }
         // is there something we should consider required for this to be a valid
-
 		allEmployees.put(employee.getId(), employee);
 	}
 

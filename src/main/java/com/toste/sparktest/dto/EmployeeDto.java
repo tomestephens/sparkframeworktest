@@ -10,6 +10,16 @@ public class EmployeeDto {
         status = EmploymentStatus.ACTIVE;
     }
 
+    public EmployeeDto(String firstName, String middleInitial, String lastName, LocalDate dateOfBirth, LocalDate dateOfEmployment) {
+        this.id = UUID.randomUUID();
+        this.firstName = firstName;
+        this.middleInitial = middleInitial;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfEmployment = dateOfEmployment;
+        this.status = EmploymentStatus.ACTIVE;
+    }
+
 	private UUID id;
 
 	private String firstName;
@@ -108,7 +118,15 @@ public class EmployeeDto {
 	}
 
 	public enum EmploymentStatus {
-	    ACTIVE,
-        INACTIVE;
+	    ACTIVE {
+	    	public String toString() {
+	    		return "Active";
+			}
+		},
+        INACTIVE {
+	    	public String toString() {
+	    		return "Inactive";
+			}
+		}
     }
 }

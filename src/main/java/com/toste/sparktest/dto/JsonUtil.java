@@ -15,6 +15,7 @@ public class JsonUtil {
 	private static final Genson genson = new GensonBuilder()
 			.useIndentation(true)
 			.withConverter(new LocalDateConverter(), LocalDate.class)
+			.withConverter(new EmploymentStatusConverter(), EmployeeDto.EmploymentStatus.class)
 			.create();
 
 	public static String toJson(Object object) {
@@ -26,7 +27,7 @@ public class JsonUtil {
 			T e = genson.deserialize(jsonString, type);
 			return e;
 		} catch (JsonStreamException | JsonBindingException ex) {
-			throw new IllegalArgumentException("Could not parse JSON: " + jsonString + ". Reason: " + ex.getMessage());
+			throw new IllegalArgumentException("Could not parse JSON: " + jsonString + ". Reason: " + ex.getMessage() + ". Details: " + ex.getCause());
 		}
 	}
 
@@ -37,17 +38,17 @@ public class JsonUtil {
 	private static class LocalDateConverter implements Converter<LocalDate> {
 
 		@Override
-		public void serialize(LocalDate localDate, ObjectWriter objectWriter, Context context) throws Exception {
+		public void serialize(LocalDate localDate, ObjectWriter writer, Context context) throws Exception {
 			if (localDate == null) {
 				return;
 			}
-			objectWriter.writeString(localDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+			writer.writeString(localDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
 		}
 
 		@Override
-		public LocalDate deserialize(ObjectReader objectReader, Context context) throws Exception {
+		public LocalDate deserialize(ObjectReader reader, Context context) throws Exception {
 
-			final String dateString = objectReader.valueAsString();
+			final String dateString = reader.valueAsString();
 			if (dateString == null || dateString.isEmpty()) {
 				return null;
 			}
@@ -58,6 +59,25 @@ public class JsonUtil {
 			}
 
 		}
+	}
+
+	private static class EmploymentStatusConverter implements Converter<EmployeeDto.EmploymentStatus> {
+
+		@Override
+		public void serialize(EmployeeDto.EmploymentStatus status, ObjectWriter writer, Context context) {
+			writer.writeString(status.toString());
+		}
+
+		@Override
+		public EmployeeDto.EmploymentStatus deserialize(ObjectReader reader, Context context) throws Exception {
+			final String statusString = reader.valueAsString();
+			if (statusString == null || statusString.isEmpty()) {
+				return EmployeeDto.EmploymentStatus.ACTIVE;
+			}
+
+			return EmployeeDto.EmploymentStatus.valueOf(statusString.toUpperCase());
+		}
+
 	}
 
 }
